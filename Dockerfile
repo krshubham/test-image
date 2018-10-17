@@ -1,8 +1,25 @@
 FROM ubuntu:latest
-MAINTAINER Rajdeep Dua "dua_rajdeep@yahoo.com"
-RUN apt-get update -y
-RUN apt-get install -y python3 python3-pip python3-dev build-essential
 
+MAINTAINER Kumar Shubham "kumar.shubham2015@vit.ac.in"
+
+RUN apt-get update
+
+
+# Install node.js for running the programs
+RUN apt-get install nodejs
+# Install NPM for node packages
+RUN apt-get install npm
+
+RUN apt-get update -y
+# Install Python3 for running python programs
+RUN apt-get install -y python3
+# Install g++ and gcc for running C/C++ prorgams;
+RUN apt-get install -y gcc g++
+# Install jdk and jre for running java programs
+RUN apt-get install default-jdk default-jre
+
+
+# Creating a new user for the sanbox
 RUN ["adduser",  "--home",  "/usr/src/app", "--system", "sandboxuser"]
 RUN ["chown", "-R", "sandboxuser", "/usr/src/app"]
 RUN ["chmod", "-R", "u+rwx", "/usr/src/app"]
@@ -12,8 +29,6 @@ WORKDIR /usr/src/app
 
 RUN chmod 755 /usr/src/app/runcode.sh
 
-RUN pip3 install -r requirements.txt
-
 RUN rm /bin/ls
 RUN rm /usr/bin/apt
 RUN rm /bin/mv
@@ -21,6 +36,3 @@ RUN rm /bin/dd
 RUN rm /bin/uname
 RUN rm /sbin/mkf*
 RUN rm /bin/rm
-
-ENTRYPOINT ["python3"]
-CMD ["app.py"]
