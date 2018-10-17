@@ -16,7 +16,7 @@ async function run_c_code(message, out){
             console.log("No compilation error");
             out.compileout = compile_response.stdout;
             shell.cd(file_dir);
-            const invoke_response = shell.exec(`gtimeout ${timeout} ./${file_name}`);
+            const invoke_response = shell.exec(`timeout ${timeout} ./${file_name}`);
             if(invoke_response.code === 0){
                 out.stdout = invoke_response.stdout;
                 console.log('The program executed successfully');
@@ -51,7 +51,7 @@ async function run_cpp_code(message, out){
         if(compile_response.code === 0){
             out.compileout = compile_response.stdout;
             shell.cd(file_dir);
-            const invoke_response = shell.exec(`gtimeout ${timeout} ./${file_name}`);
+            const invoke_response = shell.exec(`timeout ${timeout} ./${file_name}`);
             if(invoke_response.code === 0){
                 out.stdout = invoke_response.stdout;
                 console.log('The program executed successfully');
@@ -81,7 +81,7 @@ async function run_python_code(message, out){
         const file = path.join(__dirname,'codes',`${message.id}-${PORT}-${Date.now()}.py`);
         const file_dir = path.join(__dirname,'codes');
         fs.writeFileSync(file,message.code);
-        const command_response = shell.exec(`gtimeout ${timeout} python3 ${file}`);
+        const command_response = shell.exec(`timeout ${timeout} python3 ${file}`);
         if(command_response.code === 0){
             // The command executed successfully
             console.log('executed succssfully');
