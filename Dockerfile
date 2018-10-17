@@ -2,21 +2,20 @@ FROM ubuntu:latest
 
 MAINTAINER Kumar Shubham "kumar.shubham2015@vit.ac.in"
 
-RUN apt-get update
-
+# Update package lists
+RUN apt-get update -y
 
 # Install node.js for running the programs
-RUN apt-get install nodejs
+RUN apt-get install -y nodejs
 # Install NPM for node packages
-RUN apt-get install npm
+RUN apt-get install -y npm
 
-RUN apt-get update -y
 # Install Python3 for running python programs
-RUN apt-get install -y python3
+RUN apt-get install -y python3 build-essential
 # Install g++ and gcc for running C/C++ prorgams;
 RUN apt-get install -y gcc g++
 # Install jdk and jre for running java programs
-RUN apt-get install default-jdk default-jre
+RUN apt-get install -y default-jdk default-jre
 
 
 # Creating a new user for the sandbox
