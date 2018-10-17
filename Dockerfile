@@ -19,7 +19,7 @@ RUN apt-get install -y gcc g++
 RUN apt-get install default-jdk default-jre
 
 
-# Creating a new user for the sanbox
+# Creating a new user for the sandbox
 RUN ["adduser",  "--home",  "/usr/src/app", "--system", "sandboxuser"]
 RUN ["chown", "-R", "sandboxuser", "/usr/src/app"]
 RUN ["chmod", "-R", "u+rwx", "/usr/src/app"]
@@ -27,7 +27,9 @@ RUN ["chmod", "-R", "u+rwx", "/usr/src/app"]
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
-RUN chmod 755 /usr/src/app/runcode.sh
+RUN npm install 
+
+CMD [ "node","app.js"]
 
 RUN rm /bin/ls
 RUN rm /usr/bin/apt

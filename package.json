@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "shelljs": "^0.8.2",
+    "zeromq": "^5.0.0"
+  }
+}
